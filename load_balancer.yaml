@@ -1,0 +1,17 @@
+---
+servers:
+  - address: "localhost:8081"
+algorithm: "round_robin"
+...
+
+# Example:
+#
+# ---
+# servers:
+#  - address: "your server address"
+#  - address: "other server address"
+# algorithm: "round_robin"
+# ...
+#
+# algorithm selections:
+# - round_robin
