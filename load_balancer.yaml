@@ -1,6 +1,8 @@
 ---
+proxyAddress: "localhost:8080"
 servers:
   - address: "localhost:8081"
+  - address: "localhost:8082"
 algorithm: "round_robin"
 ...
 

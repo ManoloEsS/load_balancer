@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	loadserver "github.com/ManoloEsS/load_balancer/internal/load_server"
+	"github.com/ManoloEsS/load_balancer/internal/backend"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -24,7 +24,7 @@ func TestConfig(t *testing.T) {
 			filename:     "load_balancer.yaml",
 			fileContents: []byte("---\nservers:\n - address: \"localhost:8081\"\nalgorithm: \"round_robin\"\n..."),
 			expectedConfig: &Config{
-				Servers: []loadserver.Server{
+				Servers: []backend.Server{
 					{
 						Address: "localhost:8081",
 					},
@@ -50,7 +50,7 @@ func TestConfig(t *testing.T) {
 			pathToTestConfig := filepath.Join(testDir, tt.filename)
 			_ = os.WriteFile(pathToTestConfig, tt.fileContents, 0644)
 
-			testCfg, err := NewConfig(defaultConfigPath)
+			testCfg, err := LoadConfig(defaultConfigPath)
 			if tt.expectError {
 				assert.Error(t, err, "expected error")
 			}
